@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "dotnet-test-nunit": "3.4.0-beta-3",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.0",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
+    "Microsoft.Extensions.Logging": "1.1.1",
+    "Microsoft.Extensions.Logging.Abstractions": "1.1.1",
+    "Microsoft.Extensions.Logging.Debug": "1.1.1",
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    },
+    "Npgsql": "3.2.1",
+    "Npgsql.EntityFrameworkCore.PostgreSQL": "1.1.0",
+    "NUnit": "3.6.1",
+    "RogueFlashNetCoreMvc": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "testRunner": "nunit"
+}

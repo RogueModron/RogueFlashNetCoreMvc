@@ -1,0 +1,162 @@
+﻿@model RogueFlashNetCoreMvc.ViewData.CardData
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RogueFlash - @ViewData["Title"]</title>
+
+    @Html.Partial("/Views/Shared/HeadContent.cshtml")
+</head>
+<body>
+
+    @Html.Partial("/Views/Shared/NoScript.cshtml")
+    @Html.Partial("/Views/Shared/Menu.cshtml")
+
+    <div id="appScreen">
+
+        @Html.Partial("/Views/Shared/PageHeader.cshtml")
+
+        <div class="pageBody">
+            <div class="centered filter margin-bottom-2x">
+                <input type="hidden" id="deckId" value="@Model.DeckId" />
+                <input type="hidden" id="cardId" value="@Model.CardId" />
+
+                <label class="fieldLabel left"
+                       for="sideA">
+                    Side A
+                </label>
+                <textarea id="sideA"
+                          class="field roundedAll"
+                          placeholder="Side A"
+                          rows="5">@*
+                    *@@Model.SideA@*
+                *@</textarea>
+
+                <label class="fieldLabel left"
+                       for="sideB">
+                    Side B
+                </label>
+                <textarea id="sideB"
+                          class="field roundedAll"
+                          placeholder="Side B"
+                          rows="5">@*
+                    *@@Model.SideB@*
+                *@</textarea>
+
+                <label class="fieldLabel left"
+                       for="notes">
+                    Notes
+                </label>
+                <textarea id="notes"
+                          class="field roundedAll"
+                          placeholder="Notes"
+                          rows="5">@*
+                    *@@Model.Notes@*
+                *@</textarea>
+
+                <label class="fieldLabel left"
+                       for="tags">
+                    Tags
+                </label>
+                <input id="tags"
+                       type="text"
+                       class="field roundedAll"
+                       placeholder="Tags"
+                       value="@Model.Tags" />
+
+                <label class="fieldLabel left"
+                       for="sideBToA">
+                    Side B to A
+                </label>
+                <input id="sideBToA"
+                       type="checkbox"
+                       class="fieldCheckBox"
+                       value="true"
+                       @(Model.SideBToA ? "checked=\"checked\"" : "") />
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("/Views/Shared/Scripts.cshtml")
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        function updateCard() {
+            $.ajax({
+                data: {
+                    cardId: $("#cardId").val(),
+                    sideA: $("#sideA").val(),
+                    sideB: $("#sideB").val(),
+                    notes: $("#notes").val(),
+                    tags: $("#tags").val(),
+                    sideBToA: $("#sideBToA").is(":checked")
+                },
+                dataType: "json",
+                error: function(data) {
+                    //
+                },
+                method: "POST",
+                success: function(data) {
+                    //
+                },
+                url: app.utils.getUrl('@Url.Action("", "AjaxSaveCard")')
+            });
+        }
+        app.utils.setValueObserver(
+            $("#sideA"),
+            updateCard
+        );
+        app.utils.setValueObserver(
+            $("#sideB"),
+            updateCard
+        );
+        app.utils.setValueObserver(
+            $("#notes"),
+            updateCard
+        );
+        app.utils.setValueObserver(
+            $("#tags"),
+            updateCard
+        );
+        $("#sideBToA").click(updateCard);
+
+        var appMenuOptions = {
+            newDeckButton: true,
+            newDeckUrl: '@Url.Action("", "Deck")',
+            decksButton: true,
+            decksUrl: '@Url.Action("", "Decks")',
+            newCardButton: true,
+            newCardUrl: '@Url.Action("", "Card")',
+            cardsButton: true,
+            cardsUrl: '@Url.Action("", "Cards")',
+            reviewButton: true,
+            reviewUrl: '@Url.Action("", "Review")'
+        };
+        var appMenuComponent = new app.components.AppMenuComponent(appMenuOptions);
+        appMenuComponent.setDeckId($("#deckId").val());
+
+        function deleteCard() {
+            $.ajax({
+                data: {
+                    ids: $("#cardId").val()
+                },
+                dataType: "json",
+                error: function(data) {
+                    //
+                },
+                method: "POST",
+                success: function(data) {
+                    document.location = app.utils.getUrl('@Url.Action("", "Cards")');
+                },
+                url: app.utils.getUrl('@Url.Action("", "AjaxDeleteCards")')
+            });
+        }
+        var actionMenuOptions = {
+            deleteAction: deleteCard
+        };
+        var actionMenuComponent = new app.components.ActionMenuComponent(actionMenuOptions);
+        actionMenuComponent.setActionMenu(true);
+    });
+    </script>
+</body>
+</html>

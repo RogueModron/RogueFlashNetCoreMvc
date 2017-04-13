@@ -1,0 +1,72 @@
+Microsoft Visual Studio Community 2015
+Version 14.0.25431.01 Update 3
+Microsoft .NET Framework
+Version 4.6.01586
+
+Installed Version: Community
+
+Visual Basic 2015   00322-20000-00000-AA565
+Microsoft Visual Basic 2015
+
+Visual C# 2015   00322-20000-00000-AA565
+Microsoft Visual C# 2015
+
+Visual C++ 2015   00322-20000-00000-AA565
+Microsoft Visual C++ 2015
+
+Application Insights Tools for Visual Studio Package   7.18.00214.2
+Application Insights Tools for Visual Studio
+
+ASP.NET and Web Tools 2015.1   14.1.21111.0
+ASP.NET and Web Tools 2015.1
+
+ASP.NET Web Frameworks and Tools 2012.2   4.1.41102.0
+For additional information, visit http://go.microsoft.com/fwlink/?LinkID=309563
+
+ASP.NET Web Frameworks and Tools 2013   5.2.40314.0
+For additional information, visit http://www.asp.net/
+
+Azure App Service Tools v2.8.1   14.0.11123.0
+Azure App Service Tools v2.8.1
+
+Common Azure Tools   1.8
+Provides common services for use by Azure Mobile Services and Microsoft Azure Tools.
+
+JavaScript Language Service   2.0
+JavaScript Language Service
+
+JavaScript Project System   2.0
+JavaScript Project System
+
+Merq   1.1.14-alpha (21c13c9)
+Command Bus, Event Stream and Async Manager for Visual Studio extensions.
+
+Microsoft .NET Core Tools (Preview 2)   14.1.21111.0
+Microsoft .NET Core Tools (Preview 2)
+
+Microsoft Azure Mobile Services Tools   1.4
+Microsoft Azure Mobile Services Tools
+
+Mono Debugging for Visual Studio   Mono.Debugging.VisualStudio
+Support for debugging Mono processes with Visual Studio.
+
+NuGet Package Manager   3.5.0
+NuGet Package Manager in Visual Studio. For more information about NuGet, visit http://docs.nuget.org/.
+
+PreEmptive Analytics Visualizer   1.2
+Microsoft Visual Studio extension to visualize aggregated summaries from the PreEmptive Analytics product.
+
+SQL Server Data Tools   14.0.60519.0
+Microsoft SQL Server Data Tools
+
+TypeScript   1.8.36.0
+TypeScript tools for Visual Studio
+
+Xamarin   4.3.0.789 (4d2ed3d)
+Visual Studio extension to enable development for Xamarin.iOS and Xamarin.Android.
+
+Xamarin.Android   7.1.0.43 (3a62f1e)
+Visual Studio extension to enable development for Xamarin.Android.
+
+Xamarin.iOS   10.4.0.128 (ba11e48)
+Visual Studio extension to enable development for Xamarin.iOS.

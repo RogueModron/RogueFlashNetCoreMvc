@@ -1,0 +1,119 @@
+﻿@model RogueFlashNetCoreMvc.ViewData.DeckData
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RogueFlash - @ViewData["Title"]</title>
+
+    @Html.Partial("/Views/Shared/HeadContent.cshtml")
+</head>
+<body>
+
+    @Html.Partial("/Views/Shared/NoScript.cshtml")
+    @Html.Partial("/Views/Shared/Menu.cshtml")
+
+    <div id="appScreen">
+
+        @Html.Partial("/Views/Shared/PageHeader.cshtml")
+
+        <div class="pageBody">
+            <div class="centered filter margin-bottom-2x">
+                <input type="hidden" id="deckId" value="@Model.DeckId" />
+
+                <label class="fieldLabel left"
+                       for="description">
+                    Description
+                </label>
+                <input id="description"
+                       type="text"
+                       class="field roundedAll"
+                       placeholder="Description"
+                       value="@Model.Description" />
+
+                <label class="fieldLabel left"
+                       for="notes">
+                    Notes
+                </label>
+                <textarea id="notes"
+                          class="field roundedAll"
+                          placeholder="Notes"
+                          rows="5">@*
+                    *@@Model.Notes@*
+                *@</textarea>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("/Views/Shared/Scripts.cshtml")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function updateDeck() {
+                $.ajax({
+                    data: {
+                        deckId: $("#deckId").val(),
+                        description: $("#description").val(),
+                        notes: $("#notes").val()
+                    },
+                    dataType: "json",
+                    error: function (data) {
+                        //
+                    },
+                    method: "POST",
+                    success: function (data) {
+                        //
+                    },
+                    url: app.utils.getUrl('@Url.Action("", "AjaxSaveDeck")')
+                });
+            }
+            app.utils.setValueObserver(
+                $("#description"),
+                updateDeck
+            );
+            app.utils.setValueObserver(
+                $("#notes"),
+                updateDeck
+            );
+
+            var appMenuOptions = {
+                newDeckButton: true,
+                newDeckUrl: '@Url.Action("", "Deck.go")',
+                decksButton: true,
+                decksUrl: '@Url.Action("", "Decks")',
+                newCardButton: true,
+                newCardUrl: '@Url.Action("", "Card")',
+                cardsButton: true,
+                cardsUrl: '@Url.Action("", "Cards")',
+                reviewButton: true,
+                reviewUrl: '@Url.Action("", "Review")'
+            };
+            var appMenuComponent = new app.components.AppMenuComponent(appMenuOptions);
+            appMenuComponent.setDeckId($("#deckId").val());
+
+            function deleteDeck() {
+                $.ajax({
+                    dataType: "json",
+                    error: function (data) {
+                        //
+                    },
+                    method: "DELETE",
+                    success: function (data) {
+                        document.location = app.utils.getUrl('@Url.Action("", "Decks")');
+                    },
+                    url: app.utils.getUrl(
+                        '@Url.Action("", "AjaxDeleteDecks")',
+                        {
+                            ids: ids.join(",")
+                        }
+                    )
+                });
+            }
+            var actionMenuOptions = {
+                deleteAction: deleteDeck
+            };
+            var actionMenuComponent = new app.components.ActionMenuComponent(actionMenuOptions);
+            actionMenuComponent.setActionMenu(true);
+        });
+    </script>
+</body>
+</html>
